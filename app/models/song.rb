@@ -2,15 +2,12 @@ require "open-uri"
 require "addressable/uri"
 
 class Song < ActiveRecord::Base
-  # has_many :occurrences
-  # has_many :vocabularies, through: :occurrences
-
   include Searchable
   include IndexSetup
 
   def highlighted_lyrics(level)
     return lyric_jp if vocabs_of_level(level).count == 0
-    
+
     query = vocabs_of_level(level).map(&:text).join(" ")
     
     response = Song.search({

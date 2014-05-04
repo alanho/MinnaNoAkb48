@@ -1,0 +1,11 @@
+<h2><%= @song.name_jp %></h2>
+<h5>
+  <% %w{N5 N4 N3 N2 N1}.each do |level| %>
+    <span class="song-link"><%= link_to level, song_path(@song, level: level) %></span>
+  <% end %>
+</h5>
+<div class="row result">
+  <div class="col-lg-12">
+    <%= raw simple_format(@song.highlighted_lyrics(params[:level])[0]) %>
+  </div>
+</div>

@@ -1,9 +1,6 @@
 require "csv"
 
 class Vocabulary < ActiveRecord::Base
-  #has_many :occurrences
-  #has_many :songs, through: :occurrences
-
   scope :of_level, -> (level) { where(level: level) }
 
   def text
@@ -41,7 +38,6 @@ class Vocabulary < ActiveRecord::Base
     end
 
     def build_occurrences
-      #Occurrence.delete_all
       reset_occurrences
 
       find_each do |vocab|
@@ -54,9 +50,6 @@ class Vocabulary < ActiveRecord::Base
           song.vocab_ids = song.vocab_ids + [vocab.id]
           song.save
         end
-
-        # vocab.songs = response.records
-        # vocab.save
       end
     end
   end

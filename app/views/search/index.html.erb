@@ -1,11 +1,20 @@
 <% if params[:q] %>
   <h2>Search Result:</h2>
-  <% @response.each do |result| %>
+  <% @response.records.each_with_hit do |song, result| %>
   <div class="row result">
     <div class="col-lg-12">
-      <h4><%= result.name_jp %></h4>
+      <h3>
+        <%= result.name_jp %>
+        <% %w{N5 N4 N3 N2 N1}.each do |level| %>
+          <span class="song-link"><%= link_to level, song_path(song, level: level) %></span>
+        <% end %>
+      </h3>
       <p><%= raw result.highlight.lyric_jp[0] %></p>
     </div>
   </div>
+  <% end %>
+
+  <% if @response.empty? %>
+  <h5>no matching song!</h5>
   <% end %>
 <% end %>
