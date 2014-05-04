@@ -10,6 +10,8 @@ class CreateSongs < ActiveRecord::Migration
       t.text :lyric_romaji
       t.text :lyric_en
 
+      t.integer :vocab_ids, array: true
+
       t.timestamps
     end
 

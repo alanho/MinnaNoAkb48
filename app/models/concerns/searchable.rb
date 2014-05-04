@@ -5,7 +5,7 @@ module Searchable
     include Elasticsearch::Model
     include Elasticsearch::Model::Callbacks
 
-    settings index: { number_of_shards: 1 } do
+    settings index: { analysis: { analyzer: { default: { type: "kuromoji" }}} } do
       mappings dynamic: 'false' do
         indexes :name_jp, analyzer: 'kuromoji'
         indexes :lyric_jp, analyzer: 'kuromoji'

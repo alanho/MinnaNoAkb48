@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503081812) do
+ActiveRecord::Schema.define(version: 20140504163851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "occurrences", force: true do |t|
+    t.integer  "vocabulary_id"
+    t.integer  "song_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "occurrences", ["song_id"], name: "index_occurrences_on_song_id", using: :btree
+  add_index "occurrences", ["vocabulary_id"], name: "index_occurrences_on_vocabulary_id", using: :btree
 
   create_table "songs", force: true do |t|
     t.string   "slug"
@@ -25,10 +35,22 @@ ActiveRecord::Schema.define(version: 20140503081812) do
     t.text     "lyric_jp"
     t.text     "lyric_romaji"
     t.text     "lyric_en"
+    t.integer  "vocab_ids",    array: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "songs", ["slug"], name: "index_songs_on_slug", unique: true, using: :btree
+
+  create_table "vocabularies", force: true do |t|
+    t.string   "kanji"
+    t.string   "furigana"
+    t.string   "romaji"
+    t.string   "meaning"
+    t.string   "level"
+    t.integer  "song_ids",   array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
