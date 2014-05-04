@@ -46,7 +46,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Minna no AKB48!</a>
+            <%= link_to "Minna no AKB48!", root_path, class: "navbar-brand" %>
           </div>
           <div class="navbar-collapse collapse">
             <%= form_tag("/search", method: :get, class: "navbar-form navbar-left", role: "Search") do %>
