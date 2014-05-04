@@ -35,7 +35,7 @@ class Song < ActiveRecord::Base
       }
     })
 
-    response.first.highlight.lyric_jp
+    response.first.highlight.lyric_jp[0]
   end
 
   def vocabs_of_level(level)
