@@ -1,0 +1,20 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  host: 127.0.0.1
+  username: alanho
+  password:
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *defaults
+  database: minnanoakb48_development
+
+test:
+  <<: *defaults
+  database: minnanoakb48_test
+
+production:
+  <<: *defaults
+  database: minnanoakb48_production
