@@ -42,7 +42,7 @@ gem 'kaminari'
 
 group :production do
   gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
-  gem 'rails_12factor'
+  #gem 'rails_12factor'
   gem 'newrelic_rpm'
 end
 
